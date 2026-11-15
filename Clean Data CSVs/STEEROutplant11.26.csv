@@ -1,0 +1,184 @@
+"","Location","Outplanting_Date","Outplanting_Group","Clump_ID_(tag)","Clump_Lat","Clump_Long","Spp.Code","PlantNumber","NurseryTag","Containertype","Plant_height(cm)","Number_leaves","Clump_substrate","Clump_water_depth(cm)","Plant_-me","Notes"
+"1","STEER/Bovoni",2025-07-31,"YOE Restoration","2282",18.30882,-64.8738,"RHMA",1,"4913","4TP",58.9,19,"Peat",13,NA,NA
+"2","STEER/Bovoni",2025-07-31,"YOE Restoration","2282",18.30882,-64.8738,"RHMA",2,"4837","4TP",58.7,18,"Peat",19.6,NA,NA
+"3","STEER/Bovoni",2025-07-31,"YOE Restoration","2282",18.30882,-64.8738,"RHMA",3,"5000","4TP",75.5,16,"Peat",13.4,NA,NA
+"4","STEER/Bovoni",2025-07-31,"YOE Restoration","2396",18.3088,-64.87385,"RHMA",1,"4731","3TP",NA,19,"Peat",NA,NA,NA
+"5","STEER/Bovoni",2025-07-31,"YOE Restoration","2396",18.3088,-64.87385,"RHMA",2,"4758","3TP",NA,26,"Peat",NA,NA,NA
+"6","STEER/Bovoni",2025-07-31,"YOE Restoration","2396",18.3088,-64.87385,"RHMA",3,"4800","4TP",NA,17,"Peat",NA,NA,NA
+"7","STEER/Bovoni",2025-07-31,"YOE Restoration","2575",18.30878,-64.87381,"RHMA",1,"4006","4TP",59.9,7,"Peat",17.9,NA,NA
+"8","STEER/Bovoni",2025-07-31,"YOE Restoration","2575",18.30878,-64.87381,"RHMA",2,"4861","4TP",55,18,"Peat",17.9,NA,NA
+"9","STEER/Bovoni",2025-07-31,"YOE Restoration","2575",18.30878,-64.87381,"RHMA",3,"E2-178","4TP",35.3,9,"Peat",17.9,NA,NA
+"10","STEER/Bovoni",2025-07-31,"YOE Restoration","1787",18.3088,-64.87377,"RHMA",1,"4906","4TP",45.4,27,"Peat",15,NA,NA
+"11","STEER/Bovoni",2025-07-31,"YOE Restoration","1787",18.3088,-64.87377,"RHMA",2,"3716A","4TP",58.6,15,"Peat",15,NA,NA
+"12","STEER/Bovoni",2025-07-31,"YOE Restoration","1787",18.3088,-64.87377,"RHMA",3,"4828","4TP",53.8,14,"Peat",15,NA,NA
+"13","STEER/Bovoni",2025-07-31,"YOE Restoration","1501",18.30865,-64.8738,"RHMA",1,"3832","4TP",47.3,28,"Peat",8.7,"Peat",NA
+"14","STEER/Bovoni",2025-07-31,"YOE Restoration","1501",18.30865,-64.8738,"RHMA",2,"4829","4TP",68,25,"Peat",8.7,"Brancy",NA
+"15","STEER/Bovoni",2025-07-31,"YOE Restoration","1501",18.30865,-64.8738,"RHMA",3,"4910","4TP",48,9,"Peat",8.7,"Baby Louis",NA
+"16","STEER/Bovoni",2025-07-31,"YOE Restoration","1535",18.30861,-64.87383,"RHMA",1,"3723A","4TP",43,15,"Peat",12.4,"Stinky",NA
+"17","STEER/Bovoni",2025-07-31,"YOE Restoration","1535",18.30861,-64.87383,"RHMA",2,"4973","4TP",58.5,16,"Peat",12.4,"Thing 1",NA
+"18","STEER/Bovoni",2025-07-31,"YOE Restoration","1535",18.30861,-64.87383,"RHMA",3,"4841","4TP",42,12,"Peat",12.4,NA,NA
+"19","STEER/Bovoni",2025-07-31,"YOE Restoration","2344",18.30868,-64.87379,"RHMA",1,"4972","4TP",64.8,25,"Peat",10.5,"Pookie",NA
+"20","STEER/Bovoni",2025-07-31,"YOE Restoration","2344",18.30868,-64.87379,"RHMA",2,"4839","4TP",64.6,20,"Peat",10.5,"Ariel",NA
+"21","STEER/Bovoni",2025-07-31,"YOE Restoration","2344",18.30868,-64.87379,"RHMA",3,"4832","4TP",69.5,31,"Peat",10.5,"Thomas",NA
+"22","STEER/Bovoni",2025-07-31,"YOE Restoration","2587",18.30869,-64.87387,"RHMA",1,"4872","4TP",62.8,29,"Peat",13.3,NA,"Depth taken at center"
+"23","STEER/Bovoni",2025-07-31,"YOE Restoration","2587",18.30869,-64.87387,"RHMA",2,"4981","4TP",71.2,21,"Peat",13.3,NA,"Depth taken at center"
+"24","STEER/Bovoni",2025-07-31,"YOE Restoration","2587",18.30869,-64.87387,"RHMA",3,"4047","4TP",42.4,7,"Peat",13.3,NA,"Depth taken at center"
+"25","STEER/Bovoni",2025-07-31,"YOE Restoration","1503",18.3087,-64.87389,"RHMA",1,"E2-180","4TP",50.8,8.5,"Peat",13.1,"Pekka","Depth taken at center"
+"26","STEER/Bovoni",2025-07-31,"YOE Restoration","1503",18.3087,-64.87389,"RHMA",2,"3229","4TP",64.9,15,"Peat",13.1,"The Lorax","Depth taken at center"
+"27","STEER/Bovoni",2025-07-31,"YOE Restoration","1503",18.3087,-64.87389,"RHMA",3,"E2-171","4TP",43.4,16,"Peat",13.1,"Ruby","Depth taken at center"
+"28","STEER/Bovoni",2025-07-31,"YOE Restoration","962",18.30874,-64.87389,"RHMA",1,"3830","4TP",47.2,33,"Peat",14.1,"Jen-","Depth taken at center"
+"29","STEER/Bovoni",2025-07-31,"YOE Restoration","962",18.30874,-64.87389,"RHMA",2,"4977","4TP",66.9,12,"Peat",14.1,"Patton","Depth taken at center"
+"30","STEER/Bovoni",2025-07-31,"YOE Restoration","962",18.30874,-64.87389,"RHMA",3,"4868","4TP",58.7,8,"Peat",14.1,"Jayden Jr.","Depth taken at center"
+"31","STEER/Bovoni",2025-07-31,"YOE Restoration","1516",18.30871,-64.87384,"RHMA",1,"4976","4TP",61.5,13,"Peat",12.9,NA,"Depth taken at center"
+"32","STEER/Bovoni",2025-07-31,"YOE Restoration","1516",18.30871,-64.87384,"RHMA",2,"4830","4TP",68,13,"Peat",12.9,NA,"Depth taken at center"
+"33","STEER/Bovoni",2025-07-31,"YOE Restoration","1516",18.30871,-64.87384,"RHMA",3,"5249","4TP",53.1,17,"Peat",12.9,NA,"Depth taken at center"
+"34","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0635",18.30881,-64.87375,"RHMA",1,"E2-1369","3TP",63.6,10,"Peat",15.7,NA,NA
+"35","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0635",18.30881,-64.87375,"RHMA",2,"6478","3TP",59.4,16,"Peat",19,NA,"1 branch"
+"36","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0635",18.30881,-64.87375,"RHMA",3,"7014","3TP",47.7,12,"Peat",22.6,NA,"LCP"
+"37","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2259",18.30877,-64.8738,"RHMA",1,"6865","3TP",66.7,12,"Peat",16.8,NA,NA
+"38","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2259",18.30877,-64.8738,"RHMA",2,"5043","3TP",52.3,17,"Peat",19.2,NA,NA
+"39","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2259",18.30877,-64.8738,"RHMA",3,"-","3TP",72.1,17,"Peat",18.4,NA,"2 branches"
+"40","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2229",18.30884,-64.87383,"RHMA",1,"7207","3TP",62,13,"Peat",19.4,"Jaydon",NA
+"41","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2229",18.30884,-64.87383,"RHMA",2,"6859","3TP",57.1,11,"Peat",19.4,NA,NA
+"42","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2229",18.30884,-64.87383,"RHMA",3,"3482","3TP",55.5,22,"Peat",16.9,NA,NA
+"43","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2277",18.30876,-64.87373,"RHMA",1,"4741","3TP",62.9,8,"Peat",15.2,NA,NA
+"44","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2277",18.30876,-64.87373,"RHMA",2,"6851","3TP",35.4,10,"Peat",13.4,NA,NA
+"45","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2277",18.30876,-64.87373,"RHMA",3,"E2-168","4TP",52.6,6,"Peat",12.2,"Chedar",NA
+"46","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0630",18.3086,-64.87376,"RHMA",1,"-","3TP",64.2,7,"Peat",13,"Gaia <3",NA
+"47","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0630",18.3086,-64.87376,"RHMA",2,"E2-334","3TP",62.7,21,"Peat",13,NA,NA
+"48","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","0630",18.3086,-64.87376,"RHMA",3,"5812","3TP",60.8,8,"Peat",13,NA,NA
+"49","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2560",18.30866,-64.87781,"RHMA",1,"E2-1393","3TP",70.5,16,"Peat",19.3,"Bert",NA
+"50","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2560",18.30866,-64.87781,"RHMA",2,"E2-610","3TP",60.9,14,"Peat",19.3,"Lua Starry Hamilton",NA
+"51","STEER/Bovoni",2026-01-30,"Guadeloupe FWI","2560",18.30866,-64.87781,"RHMA",3,"4783","3TP",63.1,9,"Peat",19.3,"No Name",NA
+"52","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3180",18.3687824,-64.8737107,"RHMA",1,"4678","3TP",66,12,"Peat",5,NA,NA
+"53","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3180",18.3687824,-64.8737107,"RHMA",2,"4659","3TP",73,24,"Peat",6,NA,NA
+"54","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3180",18.3687824,-64.8737107,"RHMA",3,"3677","3TP",61,13,"Peat",5.5,"Damien",NA
+"55","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3131",18.3088983,-64.8738334,"RHMA",1,"4770","3TP",51,21,"Peat",6,NA,NA
+"56","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3131",18.3088983,-64.8738334,"RHMA",2,"4685","3TP",56,28,"Peat",5,NA,NA
+"57","STEER/Bovoni",2026-02-23,"Sofia S., Kimiah A","3131",18.3088983,-64.8738334,"RHMA",3,"4671","3TP",63.5,23,"Peat",10,NA,NA
+"58","STEER/Bovoni",2026-02-23,"Jose, Jai, Amilet","3189",18.3087506,-64.8738294,"RHMA",1,"6171","3TP",66,19,"Peat",7,NA,"difficult 1st time"
+"59","STEER/Bovoni",2026-02-23,"Jose, Jai, Amilet","3189",18.3087506,-64.8738294,"RHMA",2,"1041","3TP",79,10,"Peat",5,NA,"wide hole"
+"60","STEER/Bovoni",2026-02-23,"Jose, Jai, Amilet","3189",18.3087506,-64.8738294,"RHMA",3,"6064","3TP",74,6,"Peat",3,NA,"Deep wih hole"
+"61","STEER/Bovoni",2026-02-23,"Ashley Mateo, Brian- Gonzales","3123",18.3087162,-64.8738026,"RHMA",1,"4674","3TP",64.3,24,"Peat",0,NA,NA
+"62","STEER/Bovoni",2026-02-23,"Ashley Mateo, Brian- Gonzales","3123",18.3087162,-64.8738026,"RHMA",2,"4662","3TP",71.8,25,"Peat",0,NA,NA
+"63","STEER/Bovoni",2026-02-23,"Ashley Mateo, Brian- Gonzales","3123",18.3087162,-64.8738026,"RHMA",3,"4661","3TP",76.3,20,"Peat",0,NA,NA
+"64","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3188",18.3087484,-64.8737935,"RHMA",1,"4672","3TP",68,17,"Peat",7,NA,NA
+"65","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3188",18.3087484,-64.8737936,"RHMA",2,"6286","3TP",76.3,12,"Peat",7,NA,NA
+"66","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3188",18.3087484,-64.8737937,"RHMA",3,"4749","3TP",54.4,30,"Peat",7,NA,NA
+"67","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3145",18.3087802,-64.873763,"RHMA",1,"6193","3TP",74.5,20,"Peat",0,"tiffany",NA
+"68","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3145",18.3087802,-64.8737631,"RHMA",2,"1024 - 1029","3TP",65.9,12,"Peat",0,"thorny",NA
+"69","STEER/Bovoni",2026-02-23,"Aaliyah, Kai-lan, Jayce, shaan, rachel, curstin","3145",18.3087802,-64.8737632,"RHMA",3,"4666","3TP",61.5,13,"Peat",0,NA,NA
+"70","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3113",18.3088133,-64.8737975,"RHMA",1,"4747","3TP",68,27,"Peat",9,NA,NA
+"71","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3113",18.3088133,-64.8737976,"RHMA",2,"4664","3TP",58,20,"Peat",9,NA,NA
+"72","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3113",18.3088133,-64.8737977,"RHMA",3,"4670","3TP",77,25,"Peat",9,NA,NA
+"73","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3141",18.3086866,-64.8737979,"RHMA",1,"4660","3TP",70,22,"Peat",2.5,NA,NA
+"74","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3141",18.3086866,-64.873798,"RHMA",2,"4668","3TP",50.4,21,"Peat",2.5,NA,NA
+"75","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3141",18.3086866,-64.8737981,"RHMA",3,"4766","3TP",53,11,"Peat",2.5,NA,NA
+"76","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3132",18.3086812,-64.8737811,"RHMA",1,"4669","3TP",53,37,"Peat",1,NA,NA
+"77","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3132",18.3086812,-64.8737812,"RHMA",2,"4676","3TP",59,24,"Peat",1,NA,NA
+"78","STEER/Bovoni",2026-02-23,"khennoi, calen, yasech","3132",18.3086812,-64.8737813,"RHMA",3,"4677","3TP",70,32,"Peat",1,NA,NA
+"79","STEER/Bovoni",2026-02-23,"Kemon, trogs, terence","3122",18.3088572,-64.8737834,"RHMA",1,"4673","3TP",50.4,21,"Peat",10,NA,NA
+"80","STEER/Bovoni",2026-02-23,"Kemon, trogs, terence","3122",18.3088572,-64.8737835,"RHMA",2,"4667","3TP",70.1,15,"Peat",10,NA,NA
+"81","STEER/Bovoni",2026-02-23,"Kemon, trogs, terence","3122",18.3088572,-64.8737836,"RHMA",3,"4665","3TP",70.4,12,"Peat",10,NA,NA
+"82","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",1,"5241","3TP",55.6,6,"Peat",9,NA,NA
+"83","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",2,"E2-1022","3TP",41.1,13,"Peat",9,NA,NA
+"84","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",3,"E2-1062","3TP",66,8,"Peat",9,NA,NA
+"85","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",4,"E2-1074","3TP",44.5,16,"Peat",9,NA,NA
+"86","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",5,"6306","3TP",42,8,"Peat",9,NA,NA
+"87","STEER/Bovoni",2026-03-23,"Eitenne, Jan, Dinie, Scarlet, Vivovy","4377",18.308951,-64.873883,"RHMA",6,"E2-1064","3TP",68.2,15,"Peat",9,NA,NA
+"88","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",1,"E2-1193","3TP",52.5,10,"Peat",12,NA,NA
+"89","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",2,"6002","3TP",57.2,17,"Peat",12,NA,NA
+"90","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",3,"6785","3TP",42.2,7,"Peat",12,NA,NA
+"91","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",4,"E2-1060","3TP",61.4,10,"Peat",12,NA,NA
+"92","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",5,"6044","3TP",64.7,17,"Peat",12,NA,NA
+"93","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",6,"5958","3TP",56.6,6,"Peat",12,NA,NA
+"94","STEER/Bovoni",2026-03-23,NA,"4380",18.308956,-64.873886,"RHMA",7,"6627","3TP",48.6,10,"Peat",12,NA,NA
+"95","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",1,"6179","3TP",61,11,"Peat",11.5,NA,NA
+"96","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",2,"E2-1068","3TP",58.1,12,"Peat",12,NA,NA
+"97","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",3,"6789","3TP",37.5,6,"Peat",17,NA,NA
+"98","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",4,"E2-1030","3TP",66.1,8,"Peat",10,NA,NA
+"99","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",5,"E2-1132","3TP",48.7,9,"Peat",9.5,NA,NA
+"100","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",6,"5230","3TP",59.3,8,"Peat",8,NA,NA
+"101","STEER/Bovoni",2026-03-23,"Sabrina, Dusain, Ilina, Shakira, Yorline","4367",18.308956,-64.873882,"RHMA",7,"5232","3TP",43,4,"Peat",12.3,NA,NA
+"102","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",1,"E2-1070","3TP",45.6,11,"Peat",9.5,NA,NA
+"103","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",2,"E2-979","3TP",62,17,"Peat",12,NA,NA
+"104","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",3,"5989","3TP",56.8,18,"Peat",12,NA,NA
+"105","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",4,"E2-1066","3TP",56.2,11,"Peat",12,NA,NA
+"106","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",5,"6004","3TP",56.8,18,"Peat",9,NA,NA
+"107","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",6,"6165","3TP",63.7,14,"Peat",9.5,NA,NA
+"108","STEER/Bovoni",2026-03-23,NA,"4340",18.308981,-64.873927,"RHMA",7,"E2-1134","3TP",56.2,9,"Peat",10,NA,NA
+"109","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",1,"6607","3TP",56.2,7,"Peat",7.1,NA,NA
+"110","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",2,"5872","3TP",50.2,14,"Peat",9.9,NA,NA
+"111","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",3,"4651","3TP",64.5,8,"Peat",8.9,NA,NA
+"112","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",4,"4630","3TP",52.5,15,"Peat",10.3,NA,NA
+"113","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",5,"4642","3TP",58.3,19,"Peat",8.9,NA,NA
+"114","STEER/Bovoni",2026-03-27,NA,"4379",18.308946,-64.873894,"RHMA",6,"6159","3TP",70.2,16,"Peat",10.5,NA,NA
+"115","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",1,"4632","3TP",69.7,19,"Peat",10,NA,NA
+"116","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",2,"4621","3TP",60,24,"Peat",6.75,NA,NA
+"117","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",3,"4628","3TP",62.1,26,"Peat",10,NA,NA
+"118","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",4,"4626","3TP",60.1,18,"Peat",11,NA,NA
+"119","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",5,"4653","3TP",72,33,"Peat",10,NA,NA
+"120","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",6,"4627","3TP",59.7,20,"Peat",8,NA,NA
+"121","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",7,"4625","3TP",50.3,19,"Peat",9,NA,NA
+"122","STEER/Bovoni",2026-03-27,NA,"4346",18.308918,-64.873892,"RHMA",8,"4633","3TP",69.2,21,"Peat",9.4,NA,NA
+"123","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",1,"6011","3TP",58.9,8,"Peat",9,"Bob Marley",NA
+"124","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",2,"4629","3TP",68.5,20,"Peat",10.2,"Reedamon",NA
+"125","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",3,"4649","3TP",66,19,"Peat",10.1,"Boooom",NA
+"126","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",4,"E2-1178","3TP",49,5,"Peat",11,"Gabi",NA
+"127","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",5,"5430","3TP",70,15,"Peat",14,"Pictele",NA
+"128","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",6,"4623","3TP",69.8,18,"Peat",10.2,"Gala",NA
+"129","STEER/Bovoni",2026-03-27,NA,"4362",18.308958,-64.873877,"RHMA",7,"4644","3TP",56,18,"Peat",6,"Hiby",NA
+"130","STEER/Bovoni",2026-05-12,"MN,MB","4335",18.308908,-64.873781,"RHMA",1,"4656","3TP",62.4,19,"Peat",0.1,NA,NA
+"131","STEER/Bovoni",2026-05-12,"MN,MB","4335",18.308908,-64.873782,"RHMA",2,"E3-67","3TP",51.2,22,"Peat",0.1,"Kizza",NA
+"132","STEER/Bovoni",2026-05-12,"MN,MB","4335",18.308908,-64.873783,"RHMA",3,"E2-12","4TP",48.8,21,"Peat",0.1,NA,NA
+"133","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4353",18.30884,-64.8738,"RHMA",1,"4640","3TP",55,12,"Peat",23,NA,NA
+"134","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4353",18.30884,-64.8738,"RHMA",2,"No Tag- Robert","3TP",59,21,"Peat",23,NA,NA
+"135","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4353",18.30884,-64.8738,"RHMA",3,"4646","3TP",67,8,"Peat",23,NA,NA
+"136","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4359",18.308884,-64.87377,"RHMA",1,"E2-1149","3TP",66,28,"Peat",17,NA,NA
+"137","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4359",18.308884,-64.87377,"RHMA",2,"4193","3TP",46,7,"Peat",17,NA,NA
+"138","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4359",18.308884,-64.87377,"RHMA",3,"6052","3TP",53,17,"Peat",17,NA,NA
+"139","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4368",18.308869,-64.873745,"RHMA",1,"E2-387","3TP",54,23,"Peat",12,"Tom",NA
+"140","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4368",18.308869,-64.873745,"RHMA",2,"3705","3TP",66,19,"Peat",12,NA,NA
+"141","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4368",18.308869,-64.873745,"RHMA",3,"4637","3TP",54,18,"Peat",12,NA,NA
+"142","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4391",18.308687,-64.873875,"RHMA",1,"3740 RHMA-R","3TP",57,8,"Peat",20.4,NA,NA
+"143","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4391",18.308687,-64.873875,"RHMA",2,"E2-808","3TP",66,12,"Peat",20.4,NA,NA
+"144","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4391",18.308687,-64.873875,"RHMA",3,"4681","3TP",58.5,8,"Peat",20.4,NA,NA
+"145","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4348",18.308689,-64.87383,"RHMA",1,"3912","3TP",60.7,15,"Peat",17.5,NA,NA
+"146","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4348",18.308689,-64.87383,"RHMA",2,"E2-1051","3TP",72.2,15,"Peat",17.5,"Bandit",NA
+"147","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4348",18.308689,-64.87383,"RHMA",3,"E2-1058","3TP",58,14,"Peat",17.5,NA,NA
+"148","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4352",18.308629,-64.873742,"RHMA",1,"7473","3TP",60.1,11,"Peat",19.5,NA,NA
+"149","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4352",18.308629,-64.873742,"RHMA",2,"E2-1126","3TP",56.5,18,"Peat",19.5,"Jojo",NA
+"150","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4352",18.308629,-64.873742,"RHMA",3,"E2-380","3TP",58,23,"Peat",19.5,"Leo",NA
+"151","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4314",18.308619,-64.873801,"RHMA",1,"4748","3TP",71.7,14,"Peat",17.9,NA,NA
+"152","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4314",18.308619,-64.873801,"RHMA",2,"4738","3TP",60.8,21,"Peat",17.9,NA,NA
+"153","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4314",18.308619,-64.873801,"RHMA",3,"E2-1401","3TP",41,22,"Peat",17.9,"Sue",NA
+"154","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4389",18.308753,-64.873746,"RHMA",1,"6307","3TP",68.5,19,"Peat",20.4,NA,NA
+"155","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4389",18.308753,-64.873746,"RHMA",2,"4641","3TP",45,9,"Peat",20.4,NA,NA
+"156","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4389",18.308753,-64.873746,"RHMA",3,"4174","3TP",63,29,"Peat",20.4,NA,NA
+"157","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4309",18.308684,-64.873764,"RHMA",1,"E3-876608","3TP",58.3,9,"Peat",15,NA,NA
+"158","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4309",18.308684,-64.873764,"RHMA",2,"E2-1129","3TP",57.9,11,"Peat",15,NA,NA
+"159","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4309",18.308684,-64.873764,"RHMA",3,"E2-1063","3TP",51.1,11,"Peat",15,NA,NA
+"160","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4378",18.308709,-64.873746,"RHMA",1,"6307","3TP",50.6,12,"Peat",19.6,NA,NA
+"161","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4378",18.308709,-64.873746,"RHMA",2,"4641","3TP",37.2,18,"Peat",19.6,NA,NA
+"162","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4378",18.308709,-64.873746,"RHMA",3,"4174","3TP",51.8,8,"Peat",19.6,NA,NA
+"163","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4307",18.308767,-64.873817,"RHMA",1,"E2-1065","3TP",45.1,23,"Peat",19.7,NA,NA
+"164","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4307",18.308767,-64.873817,"RHMA",2,"3745-B","3TP",59.1,22,"Peat",19.7,NA,NA
+"165","STEER/Bovoni",2026-07-30,"Jayden, Jacob, Roman","4307",18.308767,-64.873817,"RHMA",3,"E2-1373","3TP",42.3,21,"Peat",19.7,NA,NA
+"166","STEER/Bovoni",2026-08-27,"CHANT","3796",18.3086111111111,-64.8738888888889,"RHMA",1,"5027","3TP",56.6,9,"Peat",8.2,NA,NA
+"167","STEER/Bovoni",2026-08-27,"CHANT","3796",18.3086111111111,-64.8738888888889,"RHMA",2,"4407","3TP",52.7,16,"Peat",8.2,NA,NA
+"168","STEER/Bovoni",2026-08-27,"CHANT","3796",18.3086111111111,-64.8738888888889,"RHMA",3,"E2-389","3TP",56,16,"Peat",8.2,"WAILYN",NA
+"169","STEER/Bovoni",2026-08-27,"CHANT","3756",18.3086111111111,-64.8736111111111,"RHMA",1,"4409","3TP",58,9,"Peat",12,NA,NA
+"170","STEER/Bovoni",2026-08-27,"CHANT","3756",18.3086111111111,-64.8736111111111,"RHMA",2,"3759B","3TP",43.5,23,"Peat",12,"MANGROVE",NA
+"171","STEER/Bovoni",2026-08-27,"CHANT","3756",18.3086111111111,-64.8736111111111,"RHMA",3,"3862","3TP",57,17,"Peat",12,NA,NA
+"172","STEER/Bovoni",2026-08-27,"CHANT","3744",18.3086111111111,-64.8736111111111,"RHMA",1,"3263","3TP",49.5,8,"Peat",9.5,NA,NA
+"173","STEER/Bovoni",2026-08-27,"CHANT","3744",18.3086111111111,-64.8736111111111,"RHMA",2,"E2-292","3TP",55,21,"Peat",10,"JAY",NA
+"174","STEER/Bovoni",2026-08-27,"CHANT","3744",18.3086111111111,-64.8736111111111,"RHMA",3,"3772B","3TP",44.5,10,"Peat",10,"FRIDAY",NA
+"175","STEER/Bovoni",2026-08-27,"CHANT","3765",18.3088888888889,-64.8736111111111,"RHMA",1,"3774B","3TP",37.6,5,"Peat",11.5,"JERRY",NA
+"176","STEER/Bovoni",2026-08-27,"CHANT","3765",18.3088888888889,-64.8736111111111,"RHMA",2,"3780B","3TP",52.4,9,"Peat",11.5,"COCO",NA
+"177","STEER/Bovoni",2026-08-27,"CHANT","3765",18.3088888888889,-64.8736111111111,"RHMA",3,"4402","3TP",56.8,16,"Peat",12,NA,NA
+"178","STEER/Bovoni",2026-08-27,"CHANT","3726",18.3088888888889,-64.8738888888889,"RHMA",1,"6804","3TP",45.6,8,"Peat",12,"NIKO lCP",NA
+"179","STEER/Bovoni",2026-08-27,"CHANT","3726",18.3088888888889,-64.8738888888889,"RHMA",2,"E2-391","3TP",63,10,"Peat",13,NA,NA
+"180","STEER/Bovoni",2026-08-27,"CHANT","3726",18.3088888888889,-64.8738888888889,"RHMA",3,"4381","3TP",39,17,"Peat",11.5,NA,NA
+"181","STEER/Bovoni",2026-08-27,"CHANT","3799",18.3088888888889,-64.8738888888889,"RHMA",1,"3803B","3TP",41.2,8,"Peat",15,NA,NA
+"182","STEER/Bovoni",2026-08-27,"CHANT","3799",18.3088888888889,-64.8738888888889,"RHMA",2,"no tag","3TP",51.8,5,"Peat",11.8,NA,NA
+"183","STEER/Bovoni",2026-08-27,"CHANT","3799",18.3088888888889,-64.8738888888889,"RHMA",3,"4523","3TP",49,11,"Peat",17,"MSD",NA

@@ -1,0 +1,415 @@
+---
+title: "RHMAIntakeCleaning"
+output: html_document
+date: "2026-11-10"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(readr)
+library(tidyverse)
+library(lubridate)
+
+RHMAintake<-read_csv("data/Copy of Master Nursery Intake Data - Reconstruction of RHMA Intake Data11.9.26.csv")
+
+#select Columns
+
+RHMAintake<-RHMAintake%>%
+  select(`Processed By`, `Planter Type`, `Collection Site`, `Collection Date`, `Date Planted`, `Tag ID`, `Mass (g)`, `Width (mm)`, `total length (cm)`, `plumule length (cm)`,`hypocotyl length (cm)`,`Roots (Y/N)`, NOTES, `Plant Name`,`Volunteer Name`,`Substrate Type`,School, Teacher, `Class Period`, `Part of Something`, Condition, `Hypocotyl Color`, `Float (Y/N)`)
+```
+
+```{r Factors}
+#Planter Type, Collection Site, Roots, Substrate Type, School, Teacher, Part of something, Condition, Hypocotyl color, Float
+
+unique(RHMAintake$`Planter Type`)
+# "N/A"    "CC"     "ST"     "3\" TP" NA       "3'' TP" "3\"TP"  "4\"TP"  "4\" TP" "4''TP" 
+RHMAintake<-RHMAintake%>%
+  mutate(`Planter Type`=recode(`Planter Type`, 
+                               "N/A"="NA",
+                             "3\"TP"="3TP",
+                             "3\" TP" ="3TP",
+                             "3'' TP" ="3TP",
+                             "3\" TP"="3TP",
+                             "4\"TP" ="4TP",
+                             "4\" TP"="4TP",
+                             "4''TP" ="4TP"
+                             ))
+unique(RHMAintake$`Planter Type`)#looks good
+
+unique(RHMAintake$`Collection Site`)
+# [1] "OC"           "CP"           "STEER"        "SRM"          "AL"           "VB"          
+# [7] "MB"           NA             "AB"           "PB"           "VBSP"         "STEER Fringe"
+#[13] "LS"           "TB"           "SARI"         "SRBB"         "BB"           "MAG"         
+#[19] "N/A" 
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Collection Site`=recode(`Collection Site`, 
+                            "STEER Fringe"="STEER-Fringe",
+                            "MAG"="MGB",
+                            "SRM"="SR-M",
+                            "SRBB"="SR-BB",
+                            "N/A"="NA"
+                             ))
+unique(RHMAintake$`Collection Site`)#looks good
+
+unique(RHMAintake$`Roots (Y/N)`)
+#[1] "Y"   "N/A" NA    "N"   "y"   "G"  
+check<-RHMAintake%>%
+  filter(`Roots (Y/N)`=="G")#only one of these, going to change to NA
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Roots (Y/N)`=recode(`Roots (Y/N)`, 
+                            "N/A"="NA",
+                            "y"="Y",
+                            "G"="NA",
+                             ))
+unique(RHMAintake$`Roots (Y/N)`)#looks good
+
+unique(RHMAintake$`Substrate Type`)
+check<-RHMAintake%>%
+  filter(`Substrate Type`=="G/S")#should be mix
+
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Substrate Type`=recode(`Substrate Type`, 
+                            "G/S"="M",
+                             ))
+
+unique(RHMAintake$`Substrate Type`)#primo
+
+unique(RHMAintake$School)
+#NA                    "CAHS MIC FIELD TRIP" "CAHS"                "VIMSIA"             
+#[5] "IEKHS"               "Antilles"            "cAHS"  
+
+RHMAintake<-RHMAintake%>%
+  mutate(School=recode(School, 
+                            "CAHS MIC FIELD TRIP" ="CAHS",
+                            "cAHS"="CAHS",
+                            "Antilles"="AS",
+                             ))
+unique(RHMAintake$School)#good
+
+unique(RHMAintake$Teacher)
+#[1] NA                    "MS. CALLWOOD"        "Mrs. Callwood"       "MR. CALLWOOD"       
+# [5] "Mr and Mrs Callwood" "Mr D"                "Ms Troutman"         "Mr Tajores"         
+# [9] "Ms Hobson"           "Mr Callwood"         "Ms Moise"            "Ms. Callwood"       
+#[13] "Ms. Hobson"          "Ms Callwood"  
+
+RHMAintake<-RHMAintake%>%
+  mutate(Teacher=recode(Teacher, 
+                        "Ms. Hobson"  ="Ms Hobson",
+                        "MS. CALLWOOD"="Ms Callwood",
+                        "Mrs. Callwood"="Ms Callwood",
+                        "Ms. Callwood" ="Ms Callwood",
+                        "MR. CALLWOOD"="Mr Callwood"
+                             ))
+unique(RHMAintake$Teacher)#good
+
+unique(RHMAintake$`Part of Something`)#this column looks like it was miscopied, notes mixed with part of something going to check it out in excel, reuploaded data much better
+
+unique(RHMAintake$Condition)#not gonna do anything with this
+
+unique(RHMAintake$`Hypocotyl Color`)
+# [1] "G"   "BG"  "B"   "GB"  "N/A" "YG"  "YB"  NA    "GY"  "GBY" "Gr"  "P"   "Y"   "H"   "G/B" "B/G"
+#[17] "S"   "GYB" "GR"  "BR" 
+
+check<-RHMAintake%>%
+  filter(`Hypocotyl Color`=="H")
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Hypocotyl Color`=recode(`Hypocotyl Color`, 
+                        "N/A"  ="NA",
+                        "Gr"="G",
+                        "G/B"="GB",
+                        "B/G" ="BG",
+                        "GR"="G",
+                        "BR"="B"
+                             ))
+
+unique(RHMAintake$`Hypocotyl Color`)
+
+unique(RHMAintake$`Float (Y/N)`)
+#[1] "Y"   "N"   "N/A" NA    "F" 
+
+check<-RHMAintake%>%
+  filter(`Float (Y/N)`=="F")
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Float (Y/N)`=recode(`Float (Y/N)`, 
+                        "F"  ="NA",
+                        "N/A"="NA"
+                             ))
+unique(RHMAintake$`Float (Y/N)`)
+```
+
+```{r Dates}
+#Colleciton Date, Date Planted
+unique(RHMAintake$`Collection Date`)
+#there are two with two slashes, gonna fix, adn two that have years wrong
+check<-RHMAintake%>%
+  filter(`Collection Date`=="09/19/02"|`Collection Date`=="04/14/05")
+#should be 23 and 25 can tell by planted date
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Collection Date`=recode(`Collection Date`,
+                                  "9//19/23"="09/19/23",
+                                  "3//17/2023"="3/17/2023",
+                                  "09/19/02"="09/19/23",
+                                  "04/14/05"="04/14/25"))
+check<-RHMAintake%>%
+  filter(`Collection Date`=="N/A")#214 NAs
+
+RHMAintake$`Collection Date`<-mdy(RHMAintake$`Collection Date`)#214 failed to parse so were good, these were all the N/A
+
+unique(RHMAintake$`Collection Date`)
+#the dates run 2021-2025 looks good
+
+
+unique(RHMAintake$`Date Planted`)
+#11/24/33","11/24/23/" check these out so I can fix them before making them dates
+check<-RHMAintake%>%
+  filter(`Date Planted`=="11/24/33"|`Date Planted`=="11/24/23/")
+#should be 2023
+RHMAintake<-RHMAintake%>%
+  mutate(`Date Planted`=recode(`Date Planted`,
+                                  "11/24/33"="11/24/23",
+                                  "11/24/23/"="11/24/23"))
+
+check<-RHMAintake%>%
+  filter(`Date Planted`=="N/A")#84 NAs
+
+RHMAintake$`Date Planted`<-mdy(RHMAintake$`Date Planted`)#84 failed to parse, that tracks with the number of NAs
+
+unique(RHMAintake$`Date Planted`)#2021-2025 looks good!
+
+```
+
+```{r Duplicates}
+duplicates<-RHMAintake%>%
+  group_by(`Tag ID`)%>%
+  summarise(N=n())%>%#this tells us how many trees have this tag id
+  filter(N>1)#and we are filtering for when this is >1
+#only 6
+
+duplicates<-duplicates%>%
+  filter(`Tag ID`!="NA")
+
+RHMAintake<-RHMAintake%>%
+  mutate(Duplicated=ifelse(as.character(`Tag ID`) %in% duplicates$`Tag ID`, #make a new column called duplicates, and if the Tag ID is in the list of Tag IDS in duplicates
+                              "Yes", #fill the value in duplicates with yes
+                              "No")) #if it is not the fill with no
+check<-RHMAintake%>%
+  filter(Duplicated=="Yes")#10 duplicates
+
+#checking the B theory.
+checkdupe<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "B"))#278 have B, checking in with Adam to see if these were duplicates
+
+#all the Bs are duplicates, he added B when there is more than one of the same number, need to make all Bs and the matching B less tags marked as duplicates
+
+RHMAintake<-RHMAintake%>%
+  mutate(Duplicated=ifelse(as.character(`Tag ID`) %in% checkdupe$`Tag ID`, 
+                              "Yes", #fill the value in duplicates with yes
+                              Duplicated)) #if it is not the fill og Duplicated value
+
+check<-RHMAintake%>%
+  filter(Duplicated=="Yes")#288 duplicates, math is mathing 
+
+
+noBdupecheck<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "B"))%>% #find all the tags with B
+    mutate(TAG = str_remove(`Tag ID`, "B$")) #make a new column with the tag numbers with no B
+
+RHMAintake<-RHMAintake%>%
+  mutate(Duplicated=ifelse(as.character(`Tag ID`) %in% noBdupecheck$TAG, 
+                              "Yes", #fill the value in duplicates with yes
+                              Duplicated)) #if it is not the fill og Duplicated value
+
+check<-RHMAintake%>%
+  filter(Duplicated=="Yes")#now we have 518 math is mathing!
+
+#check for any Cs
+Ccheck<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "C"))
+
+#marking Cs as duplicates
+RHMAintake<-RHMAintake%>%
+  mutate(Duplicated=ifelse(as.character(`Tag ID`) %in% Ccheck$`Tag ID`, 
+                              "Yes", #fill the value in duplicates with yes
+                              Duplicated)) #if it is not the fill og Duplicated value
+check<-RHMAintake%>%
+  filter(Duplicated=="Yes")#now 522
+
+#make a df that pulls the tag numbers out of the c, so i can mark the tag numbers without cs
+noCdupecheck<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "C"))%>% #find all the tags with C
+    mutate(TAG = str_remove(`Tag ID`, "C$")) #make a new column with the tag numbers with no C
+
+
+#marking C-less C duplicate tags as duplicates
+RHMAintake<-RHMAintake%>%
+  mutate(Duplicated=ifelse(as.character(`Tag ID`) %in% noCdupecheck$TAG, 
+                              "Yes", #fill the value in duplicates with yes
+                              Duplicated)) #if it is not the fill og Duplicated value
+
+check<-RHMAintake%>%
+  filter(Duplicated=="Yes")#now 522, doesnt change, that makes sense because these were already marked as dupes with the B
+
+#now I wanna double check there are no lowercase b or c 
+check<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "c"))#no lowercase c's
+
+check<-RHMAintake%>%
+  filter(str_detect(`Tag ID`, "b"))#no lowercase b's either duplicates are sorted!
+```
+
+```{r Continuous Variables}
+#library(rstatix)#outliers
+
+#`Mass (g)`, `Width (mm)`, `total length (cm)`, `plumule length (cm)`,`hypocotyl length (cm)`
+
+str(RHMAintake$`Mass (g)`)#character
+unique(RHMAintake$`Mass (g)`)#too many to see all, but what I can see looks good
+RHMAintake$`Mass (g)`<-as.numeric(RHMAintake$`Mass (g)`)
+
+boxplot(RHMAintake$`Mass (g)`)#super obvious outlier 1083
+
+RHMAintake<-RHMAintake%>%
+  mutate(`Mass (g)`=ifelse(`Mass (g)`==1083,
+         NA,
+         `Mass (g)`))
+
+boxplot(RHMAintake$`Mass (g)`)
+hist(RHMAintake$`Mass (g)`)#skewed right, some of these lower masses dont make sense. they have longer lengths.
+MassOut<-boxplot.stats(RHMAintake$`Mass (g)`)$out
+range(MassOut)#35.46-55.64
+
+str(RHMAintake$`Width (mm)`)#character
+unique(RHMAintake$`Width (mm)`)#not sure whats going on with these "11.3.8" "11.4.5" "0.1"    "11.3.5" "1.3.8"  "11.3.9" "11.1.8" "11.3.2" "104" "134" 
+
+#want to look at these see if there is anything to explain this
+weird<-c("11.3.8", "11.4.5", "11.3.5", "1.3.8" , "11.3.9" ,"11.1.8" ,"11.3.2", "104", "134","1.3.7",  "1.2.2",
+ "0.9.6","1.2.5" , "1.2.8" , "1.4.1",  "0.9.8" , "1.3.5" ,   "1.1.7" , "1.4.6",  "1.4.7" , "1.2.6" , "1.2.1",  "1.4.5" ,"94" ,"69.6", "-0.4" )
+
+#filter for some of these weird things
+check<-RHMAintake%>%
+  filter(`Width (mm)` %in% weird )
+#nothing obvious, but when make numeric the ones with two decimal points should convert to NA
+RHMAintake$`Width (mm)`<-as.numeric(RHMAintake$`Width (mm)`)
+
+boxplot(RHMAintake$`Width (mm)`)#a lot of weirdness happening here
+#going to look for outliers
+
+WidthOut<-boxplot.stats(RHMAintake$`Width (mm)`)$out
+WidthOut#im thinking that some of these have the decimal in the wrong place, but I cant be sure, so I might make all the outliers NA
+
+#make the negative widths NA
+RHMAintake<-RHMAintake%>%
+  mutate(`Width (mm)`=ifelse(`Width (mm)`<0,
+                                      NA,
+                                      `Width (mm)`))
+  
+
+
+#there's a lot of weirdness in the lengths, maybe if I math some of them I can figure out which ones are true outliers
+str(RHMAintake$`hypocotyl length (cm)`)
+unique(RHMAintake$`hypocotyl length (cm)`)
+RHMAintake$`hypocotyl length (cm)`<-as.numeric(RHMAintake$`hypocotyl length (cm)`)
+boxplot(RHMAintake$`hypocotyl length (cm)`)
+HLengthOut<-boxplot.stats(RHMAintake$`hypocotyl length (cm)`)$out
+HLengthOut
+
+
+str(RHMAintake$`total length (cm)`)
+unique(RHMAintake$`total length (cm)`)
+RHMAintake$`total length (cm)`<-as.numeric(RHMAintake$`total length (cm)`)
+boxplot(RHMAintake$`total length (cm)`)
+TLengthOut<-boxplot.stats(RHMAintake$`total length (cm)`)$out
+TLengthOut
+
+
+str(RHMAintake$`plumule length (cm)`)
+unique(RHMAintake$`plumule length (cm)`)
+RHMAintake$`plumule length (cm)`<-as.numeric(RHMAintake$`plumule length (cm)`)
+boxplot(RHMAintake$`plumule length (cm)`)#some plumule lengths less than 0, going to make those NAs
+
+#make negative plumule lengths NA
+RHMAintake<-RHMAintake%>%
+  mutate(`plumule length (cm)`=ifelse(`plumule length (cm)`<0,
+                                      NA,
+                                      `plumule length (cm)`))
+  
+#I'm going to have to play around with this to figure out what is outliers and what is not
+
+
+lengthcheck<-RHMAintake%>%
+  mutate(TotalLengthCheck=`plumule length (cm)`+`hypocotyl length (cm)`)%>%
+  filter(TotalLengthCheck!=`total length (cm)`)%>%#filter to keep only when there is no difference 
+  mutate(difference=round(`total length (cm)`,2)-round(TotalLengthCheck,2))%>%#when i just subtract normally there is weirdness in the way r stores the data and i get scientific digits
+  select(`Tag ID`,`hypocotyl length (cm)`,`plumule length (cm)`,`total length (cm)`, TotalLengthCheck, difference, `Part of Something`,NOTES)%>%
+  filter(difference!=0)#we have 595 that have different total lengths and calculated total lengths
+
+#I think that i should take all the ones where the absolute value of the differene is >2 and make all length values NA gonna see how many that is 
+
+
+
+lengthcheck1<-lengthcheck%>%
+  filter(difference< -2 |difference>2)
+#make the mismatched total lengths NA
+RHMAintake<-RHMAintake%>%
+  mutate(`total length (cm)`=ifelse(`Tag ID` %in% lengthcheck1$`Tag ID`,
+                                    NA,
+                                    `total length (cm)`))
+#make the mismatched plumule lengths NA
+RHMAintake<-RHMAintake%>%
+  mutate(`plumule length (cm)`=ifelse(`Tag ID` %in% lengthcheck1$`Tag ID`,
+                                    NA,
+                                    `plumule length (cm)`))
+#make the mismatched hypocotyl lengths NA
+RHMAintake<-RHMAintake%>%
+  mutate(`hypocotyl length (cm)`=ifelse(`Tag ID` %in% lengthcheck1$`Tag ID`,
+                                    NA,
+                                    `hypocotyl length (cm)`))
+
+
+plotcheck<-RHMAintake%>%
+  ggplot(aes(x=`Mass (g)`,y=`total length (cm)`))+
+  geom_point()
+
+plotcheck
+
+
+plotcheck1<-RHMAintake%>%
+  ggplot(aes(x=`total length (cm)`,y=`Mass (g)`))+
+  geom_point()
+
+plotcheck1
+#there are some clear points where the mass is zero or close to zero and the length is high
+plotcheck2<-RHMAintake%>%
+  ggplot(aes(x=`Width (mm)`, y=`Mass (g)`))+
+  geom_point()
+
+plotcheck2
+
+plotcheck3<-RHMAintake%>%
+  ggplot(aes(x=`Mass (g)`, y=`Width (mm)`))+
+  geom_point()
+
+plotcheck3
+
+WidthOut<-boxplot.stats(RHMAintake$`Width (mm)`)$out
+WidthOut
+
+#going to make widths >30 NA
+RHMAintake<-RHMAintake%>%
+  mutate(`Width (mm)`=ifelse(`Width (mm)` >30,
+                                    NA,
+                                    `Width (mm)`))
+
+check<-RHMAintake%>%
+  filter(`Width (mm)`<5)
+#theres no way the width at the widest point is <5mm right?
+
+```
+

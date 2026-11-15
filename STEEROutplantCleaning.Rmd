@@ -1,0 +1,168 @@
+---
+title: "STEEROutplantingCleaning"
+output: html_document
+date: "2026-11-08"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(tidyverse)
+library(parzer)
+library(stringr)
+
+STEERoutplant<-read_csv("data/STEER pilot Outplant Data - Outplant Data11-15.csv")
+
+#select columns
+STEERoutplant<-STEERoutplant%>%
+  select(Location, Outplanting_Date, Outplanting_Group, `Clump_ID_(tag)`, `Clump_lat/long`, Spp.Code,PlantNumber,NurseryTag, Containertype, `Plant_height(cm)`,Number_leaves,Clump_substrate,`Clump_water_depth(cm)`,`Plant_-me`,Notes)
+
+```
+
+```{r LatLong Formatting}
+#I have a couple different formats of Lat/Long, need to make uniform
+#most dates are decimal format, 8/27 is degrees minutes
+unique(STEERoutplant$Outplanting_Date)
+#7/31/25": N/W in front, needs to be fixed
+#"1/30/26" looks good  just needs swap to -64
+#"2/23/26" looks good, extra decimals +64 need -
+#"3/23/26" looks good, -64
+#"3/27/26" looks good -64
+#"5/12/26" looks good -64
+#"7/30/26" clump 4353 says 69, not 69 should be 64
+#"8/27/26" in decimal degrees
+
+unique(STEERoutplant$`Clump_lat/long`)
+
+#a lot of the lat/longs are in different formats, need to standardize the formats. on 7/31/26 there is N/W in front of using if else to parse out the N/W and keep the numbers and dashes only on this date
+STEERoutplant<-STEERoutplant%>%
+  mutate(`Clump_lat/long`=ifelse(Outplanting_Date=="7/31/25", 
+                                  trimws(gsub("[^0-9. ]", "", `Clump_lat/long`)), #trimws deletes the space that is created when N and W are removed, but leaves the space between lat and long so I can separate lat and long later, gsub in the brackets tells to replace everything that is not 0-9, space,- ,with blank ("") this deletes the N and W while keeping the decimals and numbers 
+                                 `Clump_lat/long`))
+
+
+#split lat and long into separate columns
+#gsub, ("-\\s+") look for a minus sig n(-) followed by a space (\\s) or any number of spaces(+)
+#replace any instance where minus sign and any combo of spaces with just a negative sign("-")
+#else keep the OG lat/long
+
+STEERoutplant <- STEERoutplant %>%
+  mutate(`Clump_lat/long` = gsub("-\\s+", "-", `Clump_lat/long`)) %>%#there is a space after the - on 3/23 
+  separate(`Clump_lat/long`, into = c("Clump_Lat", "Clump_Long"), sep = "[,\\s]+", convert = TRUE)
+#then split the Lat Long column into Clump_Lat and Clump_Long, split by either, or space 
+
+#fix the format of 8/27 using parse_lat and parse_long from the package parzer
+STEERoutplant<-STEERoutplant%>%
+  mutate(
+    Clump_Lat = parse_lat(Clump_Lat),
+    Clump_Long = parse_lon(Clump_Long)
+  )
+
+#now just want to make all the 64s negative, because we are in the western hemisphere
+STEERoutplant<-STEERoutplant%>%
+  mutate(Clump_Long=ifelse(grepl("^-", Clump_Long), #if there is a -
+                           Clump_Long, #then leave it as Clump_Long
+                           paste0("-", Clump_Long))) #if not then paste a - in front of Clump Long
+
+ #this added a bunch of digits to the rows where I converted the format. it fixes when I convert to numeric        
+str(STEERoutplant)   
+STEERoutplant$Clump_Long<-as.numeric(STEERoutplant$Clump_Long)
+
+#now to fix clump 4353 typo: -69.87380 should be -64.87380
+STEERoutplant<-STEERoutplant%>%
+  mutate(Clump_Long=ifelse( grepl("69.87380", Clump_Long, fixed = TRUE),
+                                  -64.87380,
+                                  Clump_Long))
+
+```
+
+
+```{r, Factors}
+#Location, Species, Container Type, Clump Substrate
+
+unique(STEERoutplant$Location)
+#only one location
+
+unique(STEERoutplant$Spp.Code)
+#only RHMA
+
+unique(STEERoutplant$Containertype)
+# "4"      "3"      "3\" TP" "4\" TP" "3\"TP"  "4\"TP" 
+
+STEERoutplant<-STEERoutplant%>%
+  mutate(Containertype
+         =recode(Containertype, "3\"TP"="3TP",
+         "3\" TP" ="3TP",
+         "3'' TP" ="3TP",
+         "4\"TP" ="4TP",
+         "4\" TP"="4TP",
+         "3"="3TP",
+         "4"="4TP"))
+
+unique(STEERoutplant$Clump_substrate)
+#only one option
+
+unique(STEERoutplant$`Clump_ID_(tag)`)
+str(STEERoutplant$`Clump_ID_(tag)`)
+#nothing looks weird
+
+unique(STEERoutplant$PlantNumber)
+check<-STEERoutplant%>%
+  filter(PlantNumber==8)
+str(STEERoutplant$PlantNumber)
+#interesting there is only one clump with 8 trees
+
+
+
+```
+
+```{r Dates}
+#Outplant Date
+
+library(lubridate)
+
+unique(STEERoutplant$Outplanting_Date)
+#all in the same format, mdy
+str(STEERoutplant$Outplanting_Date)#currently as a character
+
+#tell r its a date
+STEERoutplant$Outplanting_Date<-mdy(STEERoutplant$Outplanting_Date)#nothing failed to parse
+```
+
+```{r Duplicates}
+
+check<-STEERoutplant%>%
+  group_by(`Clump_ID_(tag)`, PlantNumber)%>%
+  summarise(N=n())%>%
+  filter(N>1)#no duplicates!
+
+```
+
+```{r Continuous Variables}
+#number of leaves, water depth, plant height
+
+unique(STEERoutplant$Number_leaves)
+str(STEERoutplant$Number_leaves)#already numeric
+hist(STEERoutplant$Number_leaves)
+boxplot(STEERoutplant$Number_leaves)
+#Nothing that looks out of the ordinary
+
+unique(STEERoutplant$`Clump_water_depth(cm)`)
+str(STEERoutplant$`Clump_water_depth(cm)`)
+hist(STEERoutplant$`Clump_water_depth(cm)`)
+boxplot(STEERoutplant$`Clump_water_depth(cm)`)
+#all look good
+
+unique(STEERoutplant$`Plant_height(cm)`)
+str(STEERoutplant$`Plant_height(cm)`)
+hist(STEERoutplant$`Plant_height(cm)`)#looks normally distributed
+boxplot(STEERoutplant$`Plant_height(cm)`)#looks normal also
+
+```
+
+
+```{r}
+write.csv(file="STEEROutplant11.26.csv", STEERoutplant)
+```
+

@@ -34,9 +34,9 @@ unique(LARAintake$Planter_Type)
 
 #we will want this to a factor, with levels that we have indicated in our master df, 3TP, 4TP, 5TP, CC currently we have a lot more levels some will be easy to recode, clearly typos, some we will want to filter and look at before we make changes
 
-#when I make changes I like to rewrite over the og dataframe instead of making a new named object (LARAintake2). this keeps my environment cleaner. When I was learning, I would rename my df every change I made, so I could easily go back if I messed up. Rewriting over the df keeps things cleaner, can always start back over from the beginning and reread in your data if needed
+#when I make changes I like to rewrite over the og dataframe instead of making a new named object (LARAintake2). this keeps my environment cleaner. When I was learning, I would rename my df every change I made, so I could easily go back if I messed up. Rewriting over the df keeps your environment cleaner, can always start back over from the beginning and reread in your data if needed
 
-#sometimes if I am trying to manipulate the data in a new way that I'm not sure will work, i test the code out in a renamed dataframe then run my check.
+#sometimes if I am trying to manipulate the data in a new way that I'm not sure will work, i test the code out in a renamed dataframe then run my check. This isnt necessary if you make a change that messes everything up you can always go back up and reread in your data, but making these "test" dfs just cuts out that step
 LARAintake1<-LARAintake%>%
   mutate(Planter_Type=recode(Planter_Type, 
                              "3\""="3TP",
@@ -50,10 +50,11 @@ LARAintake1<-LARAintake%>%
                              "N/A" = "NA" 
                              ))
 
-##after you make a change always check to make sure that R did what you thought it was going to do, if it didnt you can always go back up, reread in your data and try again.
+##after you make a change always check to make sure that R did what you thought it was going to do
 unique(LARAintake1$Planter_Type)
+# NA      "NA"    "CC"    "3TP"   "SM SQ" "SQ"    "4TP"  this was successful I now have only have one option for 3TP and 4TP
 
-#hen once I know it works i'll change the name to back to the og name and rerun, normally I would just delete the 1 and rerun the line 40 above (showing here for example)
+# once I know it works i'll change the name to back to the og name and rerun, normally I would just delete the 1 and rerun the line 40 above (showing this step here for clarity example)
 LARAintake<-LARAintake%>%
   mutate(Planter_Type=recode(Planter_Type, 
                              "3\""="3TP",
@@ -74,10 +75,10 @@ unique(LARAintake$Planter_Type)
 
 #i dont know what SQ or SM SQ is, going to look at these rows to see if anything about the data gives this away
 check<-LARAintake%>%
-  filter(Planter_Type=="SM SQ"| Planter_Type=="SQ")#I do this a lot, like using the filters in excel columns, then view the check df and you can look at the rest of the data and see if there are any notes or explanations why any weirdness happens. I like to always call these check and I rewrite over them later, to keep my environment clean
+  filter(Planter_Type=="SM SQ"| Planter_Type=="SQ")#I do this a lot, like using the filters in excel columns, then view the check df and you can look at the rest of the data columns and see if there are any notes or explanations why any weirdness happens. I like to always call these check and I rewrite over them later, to keep my environment clean
 
 
-#I wansnt able to find any reason for these descriptors and I don't know what they mean so makeing these NA
+#I wasn't able to find any reason for these descriptors and I don't know what they mean so making these NA, disclaimer, making NA this wiht mutate, recode way makes it a character string NA instead of r generated NA. Youll notice two NAs when you look at the unique values in Planter Type one just NA and one "NA". This might make filter out NAs harder later.. probably a better way to do this but this works for now
 
 LARAintake<-LARAintake%>%
   mutate(Planter_Type=recode(Planter_Type, 
@@ -89,7 +90,7 @@ LARAintake<-LARAintake%>%
 unique(LARAintake$Planter_Type)
 #we are seeing NA because recode makes NA a character string NA not the default r NA
 
-#2. check collection site, these actually look good, I think adam fixed them in excel
+#2. check collection site, these actually look good, I think Adam fixed them in excel
 unique(LARAintake$Collection_Site)
 #look good
 
@@ -120,8 +121,9 @@ unique(LARAintake$Radicle_Color)
 
 #what is D?
 check<-LARAintake%>%
-  filter(Radicle_Color=="D")#D? Why? nobody knowssss why. gonna leave it for now
-
+  filter(Radicle_Color=="D")
+# [1] "G"   NA    "B"   "Wt"  "N/A" "GB"  "YG"  "Y"   "g"   "D"   "BG" 
+#D? Why? nobody knowssss why. gonna leave it for now
 
 #6. Check Part of Something
 unique(LARAintake$Part_of_Something)
@@ -129,6 +131,7 @@ unique(LARAintake$Part_of_Something)
 
 #7. check propagule color
 unique(LARAintake$Propagule_Color)
+#
 LARAintake<-LARAintake%>%
   mutate(Propagule_Color=recode(Propagule_Color, 
                              "Br"="B",
@@ -150,7 +153,7 @@ unique(LARAintake$Propagule_Color)
 ```{r Dates}
 #use lubridate to make r recognize date columns as dates and ensure they are all in the same format
 
-#using unique to get a look at the dates that exist to make sure that they are all in the same format(if there are a lotttt of dates this might not work so well), if they are then I can just use the function mdy to make r recognize them as dates, if not you will need to use parse_date_time, and give r the different formats that are present. 
+#using unique to get a look at the dates that exist to make sure that they are all in the same format (if there are a lotttt of dates this might not work so well), if they are then I can just use the function mdy to make r recognize them as dates, if not you will need to use parse_date_time, and give r the different formats that are present. 
 unique(LARAintake$Collection_Date)
 # I have one that contains two dates in one, going to pick the earlier date, others say "NA", and various, mdy will change these to NAs because we do not know collection date 
 
@@ -181,8 +184,7 @@ duplicates<-LARAintake%>%
   summarise(N=n())%>%#this tells us how many trees have this tag id
   filter(N>1)#and we are filtering for when this is >1
 
-#we have 7 trees with duplicate tag IDs, and we have 107 trees without tag IDs at all, I think this count of duplicate tag IDs might be a little low, I think Adam automatically added Bs to duplicates, which doesnt neccessarily make them tracible, going to not use this excel file for the final cleaning, all good for this example tho
-
+#we have 7 trees with duplicate tag IDs, and we have 107 trees without tag IDs at all, I think this count of duplicate tag IDs might be a little low
 
 duplicates<-duplicates%>%
   filter(Tag_ID!="NA")
@@ -190,9 +192,9 @@ duplicates<-duplicates%>%
 #checking the B theory.
 checkdupe<-LARAintake%>%
   filter(str_detect(Tag_ID, "B"))
-#we have 190 trees that have B added to the tag. I might redo this with the OG intake dataframe.. but that might be a later problem
+#we have 190 trees that have B added to the tag. 
 
-#going to add a column that adds a duplicate column, so we can easily filter out duplicates when looking at the data. I use the duplicate df where we found the tag numbers that exist more than once, and if those TagID numbers are in 
+#going to add a column that adds a duplicate identifier, so we can easily filter out duplicates when looking at the data. I use the duplicate df where we found the tag numbers that exist more than once 
 LARAintake<-LARAintake%>%
   mutate(Duplicated=ifelse(as.character(Tag_ID) %in% duplicates$Tag_ID, #make a new column called duplicates, and if the Tag ID is in the list of Tag IDS in duplicates
                               "Yes", #fill the value in duplicates with yes
@@ -201,7 +203,7 @@ LARAintake<-LARAintake%>%
 #now looking at these duplicates to see if any of them look like data entered twice
 dupecheck<-LARAintake%>%
   filter(Duplicated=="Yes")
-#distinct will remove directly identical rows (there arent any here but there are prolly some later)
+#distinct will remove directly identical rows (there aren't any here but there are prolly some later)
 dupecheck<-distinct(dupecheck)
 #row count doesn't change
 ```
@@ -211,7 +213,7 @@ Continuous Variables, Outlier checks! Mass, Width, Propagule Length, Radicle Len
 #Outlier best practices, take a look at the data and see if you can identify any crazy outliers that are clearly data entry errors, but refrain from removing all outliers shown in boxplots. Best practices is to repeat analysis with and without outliers. If the outliers dont greatly change your results then remove them/change to NA. If they do have an effect on analysis there will need to be a justification for removing them. And it will need to be stated in the methods.
 
 
-#few different way to look at outliers. I like to View the dataframe and click on the continuous variable columns, this will rearrange them in order, biggest to smallest or smallest to biggest, makes it super easy to see. 
+#few different way to look at outliers. I like to View the dataframe and click on the continuous variable columns, this will rearrange them in order, biggest to smallest or smallest to biggest, makes it super easy to see. If there is anything at the super high or super low end that is obviously a typo, missed decimal point this makes it super easy to catch because you can look at the next highest number.
 
 #I also included code to look at data with boxplots, and histograms
 
@@ -225,6 +227,7 @@ LARAintake1<-LARAintake%>%
   mutate(`Mass(g)`=ifelse(`Mass(g)`>=2.70,
          NA,
          `Mass(g)`))
+
 #check the columns, no more 2.70, all good! Good to write over LARAintake, normally I would just do this, but leaving here in the code for an example
 LARAintake<-LARAintake%>%
   mutate(`Mass(g)`=ifelse(`Mass(g)`>=2.70,
@@ -254,7 +257,7 @@ LARAintake<-LARAintake%>%
 
 #now radicle length
 unique(LARAintake$`Radicle_Length(cm)`)
-#there are a few that I think people mixed up the < and > sign. Assuming these should have been <0.1. For all the <0.1 I am going to replace with half of the reporting limit so all the data is continuous 
+#there are a few that I think people mixed up the < and > sign. Assuming these should have been <0.1. For all the <0.1 I am going to replace with half of the reporting limit of 0.1 so all the data is continuous 
 
 LARAintake<-LARAintake%>%
   mutate(`Radicle_Length(cm)`=recode(`Radicle_Length(cm)`, 
@@ -269,8 +272,6 @@ LARAintake$`Radicle_Length(cm)`<-as.numeric(LARAintake$`Radicle_Length(cm)`)
 
 boxplot(LARAintake$`Radicle_Length(cm)`)#if boxplot doesnt work check the str of your dataframe, needs to be numeric
 hist(LARAintake$`Radicle_Length(cm)`)
-
-
 
 
 ```

@@ -1,0 +1,230 @@
+---
+title: "STEER Monitoring Cleaning"
+output: html_document
+date: "2026-11-05"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(readr)
+library(lubridate)
+library(tidyverse)
+STEERmon<- read_csv("data/STEER pilot Outplant Data - Monitoring Data.csv")
+
+#selecting for columns that are in the primary datasheet, and organizing them so they are in the same order
+
+#note Clump_ID=Tag ID, Health=Mortality 
+STEERmon<-STEERmon%>%
+  select(Monitored_By, Monitoring_Date, Outplant_Location, Clump_ID, Plant_Number, Mortality, Mainstem_Height, Tallest_Branch_Height, Number_of_Branches, Leaves_on_Mainstem, Leaves_on_Branches, `PropRoots?`, Notes)
+```
+
+
+```{r Dates}
+#check the format of the monitoring date, and look and see if there is any months missing. If all the dates are in the same format you can use lubridate functions to tell R they are dates
+
+unique(STEERmon$Monitoring_Date)
+#double check date format
+STEERmon$Monitoring_Date<-mdy(STEERmon$Monitoring_Date)
+
+#if the dates arent all the same format, use parse_date_time(STEERmon$Monitoring_Date, orders = c("ymd", "dmy", "mdy")) using whatever orders are present in the vector
+
+
+unique(STEERmon$Outplant_Location)
+#looks good, only BC, bovoni cay
+
+
+#want to see how many times all the clump IDs and plant numbers were monitored. Investigating any low numbers for potential typos
+check<-STEERmon%>%
+  group_by(Clump_ID, Plant_Number)%>%
+  summarise(length(unique(Monitoring_Date)))
+
+#these numbers have NAs in plant number gonna look into this and see why 630, 2229, 2396, 3123
+check1<-STEERmon%>%
+  filter(Clump_ID==630)
+
+check1<-check1<-STEERmon%>%
+  filter(Clump_ID==2229)
+
+check1<-check1<-STEERmon%>%
+  filter(Clump_ID==2396)
+
+check1<-STEERmon%>%
+  filter(Clump_ID==3123)
+#they are dead, stopped numbering plant numbers after death
+
+
+#this number only monitored once 
+check1<-STEERmon%>%
+  filter(Clump_ID==2296)
+#this is an error, likely a typo from 2396 fixed
+STEERmon <- STEERmon %>% 
+  mutate(Clump_ID = if_else(Clump_ID == 2296, 2396, Clump_ID))#if else statement, if clump ID is our problem child, replace with correct number, if not, keep clump ID
+
+
+#3113 only has one monitoring data, something fishy here gonna check
+check1<-STEERmon%>%
+  filter(Clump_ID==3112)
+#only monitored 2/27/26, i think should be 3113 going to check to see if this one is missing this date
+check1<-STEERmon%>%
+  filter(Clump_ID==3113)#double checked this was outplanted 2/23, 
+
+#3122 and 3123 both were monitored in FEB, so this is 3113, will change
+STEERmon <- STEERmon %>% 
+  mutate(Clump_ID = if_else(Clump_ID == 3112, 3113, Clump_ID))
+
+#2217 only monitored once
+check1<-STEERmon%>%
+  filter(Clump_ID==2217)
+
+check2<-STEERmon%>%
+  filter(Clump_ID==2277)
+#2277 is missing July this 2217 should be 2277
+
+STEERmon <- STEERmon %>% 
+  mutate(Clump_ID = if_else(Clump_ID == 2217, 2277, Clump_ID)) #fixed
+
+
+#3296 only once
+check1<-STEERmon%>%
+  filter(Clump_ID==3296)
+#should it be 3796? 
+check2<-STEERmon%>%
+  filter(Clump_ID==3796)#nope
+
+check3<-STEERmon%>%
+  filter(Monitoring_Date=="2025-11-21")#whats missing from this date
+
+check3<-STEERmon%>%
+  filter(Monitoring_Date=="2026-01-02")#or whats monitored here but not date before?
+#it should be 2396
+STEERmon <- STEERmon %>% 
+  mutate(Clump_ID = if_else(Clump_ID == 3296, 2396, Clump_ID)) #fixed
+
+#might be some weirdness going on with 4377
+check2<-STEERmon%>%
+  filter(Clump_ID==4377)
+#looks like mostly there are only 6 trees monitored, then randomly there is 7 in october
+STEERmon<-STEERmon%>%
+  filter(!(Clump_ID==4377 & Plant_Number==7))
+
+check3<-STEERmon%>%
+  filter(Clump_ID==4377)
+
+#now going to do a check without the plant number in group by
+check<-STEERmon%>%
+  group_by(Clump_ID)%>%
+  summarise(length(unique(Monitoring_Date)))
+
+
+```
+
+I feel like I should check that each clump id is only monitored once on each date
+```{r}
+#this tells me if when looking at each plant within each clump which plants were monitored more than once on a single monitoring date, I'll take a peek at these and see whats up, if it looks like the data was entered twice or if something is wonky
+
+monCheck<-STEERmon%>%
+  group_by(Clump_ID,Plant_Number, Monitoring_Date)%>%
+  summarise(N=n())
+#there are some that are monitored more than once, but these are NAs for the clumps that died, once they died people stopped tracking them 123
+
+#however, clump 2229 on 2026-06-25 was monitored twice, gonna investogate
+
+check<-STEERmon%>%
+  filter(Clump_ID==2229)
+#one set was done by MN, one by GE, LA
+
+unique(STEERmon$Monitoring_Date)
+#looks like its missing data for 7/24 going to check who did monitoring on 7/24
+#either data is entered twice or the wrong data is input and the duplicate is the july data
+
+check1<-STEERmon%>%
+  filter(Monitoring_Date=="2026-07-24")
+#all 7/24 was AB, gonna double check who all monitored in 6/25
+
+check1<-STEERmon%>%
+  filter(Monitoring_Date=="2026-06-25")
+#both GE, LA and MN did monitoring on this date. mystery solved. It was monitored by both groups on accident and entered twice gonna remove one of the duplicates
+
+STEERmon<-STEERmon%>%
+  filter(!(Clump_ID==2229 & Monitoring_Date=="2026-06-25" & Monitored_By=="MN"))
+
+#check it worked
+check1<-STEERmon%>%
+  filter(Clump_ID==2229 & Monitoring_Date=="2026-06-25")
+#boom shaka laka!
+
+#double check this
+monCheck<-STEERmon%>%
+  group_by(Clump_ID,Plant_Number, Monitoring_Date)%>%
+  summarise(N=n())
+
+```
+
+
+```{r Categorical Variables}
+#now going to start checking levels for factors
+unique(STEERmon$Outplant_Location)
+#looks good, only BC, bovoni cay
+
+unique(STEERmon$Mortality)
+#"A"  "D"  "DY" might want to change DY to A, for analysis, Not going to do that here tho
+
+unique(STEERmon$`PropRoots?`)
+#"N"  "Y"  "--" "-"  NA   "y" 
+STEERmon<-STEERmon%>%
+  mutate(`PropRoots?`=recode(`PropRoots?`, 
+                             "y"="Y",
+                             "--"="NA",
+                             "-" ="NA"
+                             ))
+```
+
+```{r Continuous Variables}
+
+
+unique(STEERmon$Leaves_on_Branches)
+#some dashes these will be forced to NA when made numeric
+STEERmon$Leaves_on_Branches<-as.numeric(STEERmon$Leaves_on_Branches)
+unique(STEERmon$Leaves_on_Branches)
+#these look good, no clear typos
+#looked at the range of the data by clicking on the top of the column in the dataframe, nothing out of normal ranges
+
+
+unique(STEERmon$Leaves_on_Mainstem)
+STEERmon$Leaves_on_Mainstem<-as.numeric(STEERmon$Leaves_on_Mainstem)
+unique(STEERmon$Leaves_on_Mainstem)
+#these look good, no clear typos
+#looked at the range of the data by clicking on the top of the column in the dataframe, nothing out of normal ranges
+
+
+unique(STEERmon$Number_of_Branches)
+STEERmon$Number_of_Branches<-as.numeric(STEERmon$Number_of_Branches)
+
+unique(STEERmon$Mainstem_Height)
+STEERmon$Mainstem_Height<-as.numeric(STEERmon$Mainstem_Height)
+#potential outlier clump ID 1501 has a recorded height of 435 and 1503 has one of 100 going to check these out and see whats up!
+
+check<-STEERmon%>%
+  filter(Clump_ID==1501)#this should be 43.5
+
+STEERmon<-STEERmon%>%
+  mutate(Mainstem_Height = if_else(Mainstem_Height == 435, 43.5, Mainstem_Height))#fixed
+
+
+check<-STEERmon%>%
+  filter(Clump_ID==1503)
+#im a little skeptical of this height, but i cannot rule it out for now, so the 100 stays until there is future height data to disprove it
+
+unique(STEERmon$Tallest_Branch_Height)
+STEERmon$Tallest_Branch_Height<-as.numeric(STEERmon$Tallest_Branch_Height)
+unique(STEERmon$Tallest_Branch_Height)
+#nothing looks out of the ordinary here!
+
+```
+
+```{r, Clean! Make CSV}
+
+write.csv(file="STEERmonitoringCleaned11.26.csv", STEERmon)
+```
+

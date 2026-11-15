@@ -1,0 +1,169 @@
+---
+title: "AVGEIntakeCleaning"
+output: html_document
+date: "2026-11-08"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(lubridate)
+
+AVGEintake<-read_csv("data/Copy of Master Nursery Intake Data - Reconstruction of AVGE Intake Data11.9.26.csv")
+
+#looking at the new Master Datasheets, reorganize order to match for easy integration, also only selecting for columns that we are keeping, this step we only need to do once, becasue the new semester sheets are organized to match the Primary sheets moving forward
+
+
+
+#select columns
+AVGEintake<-AVGEintake%>%
+  select(`Processed By`,`Planter Type
+`,  `Collection Site`, `Collection Date`, `Date Planted`, `Tag ID`, `Mass (g)`, `Width (cm)`, `Propagule Length (cm)`, `Radicle Length (cm)`, Notes, `Part of Something ( C, N, E)`,`Propagule Color`,`Radicle Color`, `Float (Y/N)`)
+
+
+```
+
+```{r Factors}
+#Planter Type, Collection Site, Float
+
+unique(AVGEintake$`Planter Type
+`)
+
+#"SP"     "CC"     "3\"TP"  "3\" TP" "4\"TP"  "3'' TP" NA   #wtf is sp?? checked the metadata it means standard pot..
+check<-AVGEintake%>%
+  filter(`Planter Type
+`=="SP")
+
+AVGEintake<-AVGEintake%>%
+  mutate(`Planter Type
+`=recode(`Planter Type
+`, 
+                             "3\"TP"="3TP",
+                             "3\" TP" ="3TP",
+                             "3'' TP" ="3TP",
+                             "3\" TP"="3TP",
+                             "4\"TP" ="4TP"
+                             ))
+
+unique(AVGEintake$`Planter Type
+`)#looks good
+
+unique(AVGEintake$`Collection Site`)
+# [1] "VBSP"         NA             "OC, VBSP"     "CP"           "STEER Basin"  "AL"          
+# [7] "SRHB"         "SRBB"         "GP"           "STEER Fringe" "LS"           "RB"          
+#[13] "STEER BASIN"  "SG"           "STEER FRINGE" "SRP"          "SARI"         "VB"  
+
+#what is SRP?
+check<-AVGEintake%>%
+  filter(`Collection Site`=="SRP") #unclear.. change to NA
+
+AVGEintake<-AVGEintake%>%
+  mutate(`Collection Site`=recode(`Collection Site`, 
+                             "STEER Basin"="STEER-Basin",
+                             "STEER BASIN"="STEER-Basin",
+                             "SRHB"  ="SR-HB",
+                             "SRBB" ="SR-BB",
+                             "STEER Fringe"="STEER-Fringe",
+                             "STEER FRINGE"="STEER-Fringe",
+                             "SRP"="NA"
+                             ))
+
+unique(AVGEintake$`Collection Site`)#looks good
+
+unique(AVGEintake$`Float (Y/N)`)
+#"N" "Y" NA  "7"
+
+check<-AVGEintake%>%
+  filter(`Float (Y/N)`=="7")
+#i think this is prolly a yes.. but I'm gonna make it NA cuz I cant be sure
+
+AVGEintake<-AVGEintake%>%
+  mutate(`Float (Y/N)`=recode(`Float (Y/N)`, 
+                             "7"="NA"
+                             ))
+
+unique(AVGEintake$`Float (Y/N)`)
+
+```
+
+```{r Dates}
+#Collection Date, Date Planted
+
+unique(AVGEintake$`Date Planted`)#all in the same format
+
+AVGEintake$`Date Planted`<-mdy(AVGEintake$`Date Planted`)
+
+unique(AVGEintake$`Collection Date`)
+#we have all in mdy format, and then some have various collection dates noted as various, mdy will change these various to NA
+#2021-2025 looks good! Last date is 6/25/24
+
+check<-AVGEintake%>%
+  filter(`Collection Date`=="Various")#four of them say various
+
+AVGEintake$`Collection Date`<-mdy(AVGEintake$`Collection Date`)
+#only 4 failed to parse, that tracks
+
+#ranges look good for collection and planting dates
+
+```
+
+```{r Duplicates}
+
+duplicates<-AVGEintake%>%
+  group_by(`Tag ID`)%>%
+  summarise(N=n())%>%#this tells us how many trees have this tag id
+  filter(N>1)#and we are filtering for when this is >1
+
+#no duplicates found here. Only NA, Adam cleaned this out well 
+
+check<-AVGEintake%>%
+   filter(str_detect(`Tag ID`, "B"))
+#none of these have B. 
+
+```
+
+
+```{r Continuous Variables Outlier Checks}
+#Mass, Width, Length, Radicle Length
+
+str(AVGEintake)
+#lenfth witdth and mass are all numeric, woo, radicle length is charachter need to look into that
+
+unique(AVGEintake$`Mass (g)`)#no obvious weirdness
+#no obvious outliers when reorganizing 
+
+boxplot(AVGEintake$`Mass (g)`)#on the large side potential outliers
+hist(AVGEintake$`Mass (g)`)#skewed right
+
+unique(AVGEintake$`Width (cm)`)#no weirdness
+#when I organize the data there are some widths that are total widths of an open prop, not just cotelydn widths, double checking hist and boxplot
+boxplot(AVGEintake$`Width (cm)`)
+hist(AVGEintake$`Width (cm)`)#skewed right
+#merr, not sure about this. 
+
+
+unique(AVGEintake$`Propagule Length (cm)`)#no obvious weirdness
+boxplot(AVGEintake$`Propagule Length (cm)`)#looks like outliers >3.5ish
+
+unique(AVGEintake$`Radicle Length (cm)`)#<0.1, going to change to 0.05. then make numeric
+AVGEintake<-AVGEintake%>%
+  mutate(`Radicle Length (cm)`=recode(`Radicle Length (cm)`, 
+                                     "<0.1"="0.05",
+                                     "<.1"="0.05"))
+
+AVGEintake$`Radicle Length (cm)`<-as.numeric(AVGEintake$`Radicle Length (cm)`)
+hist(AVGEintake$`Radicle Length (cm)`)#skewed right
+boxplot(AVGEintake$`Radicle Length (cm)`)#a lot of outliers above 3.8?? 
+
+```
+
+```{r, Clean! Make CSV}
+
+write.csv(file="AVGEIntakeCleaned11.26.csv", AVGEintake)
+```
+```{r}
+
+```
+
